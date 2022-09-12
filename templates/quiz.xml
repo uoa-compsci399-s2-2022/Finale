@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+    {% for category in categories %}
+        <!-- category: {{loop.index}} -->
+        <question type= "category" >
+            <category>
+                <text> {{ category }}</text>
+            </category>
+            <info format="html">
+                <text></text>
+            </info>
+            <idnumber></idnumber>
+        </question>
+    {% endfor %}
+
+    {% for category in categories %}
+        <question type= "category" >
+            <category>
+                <text> {{ category }}</text>
+            </category>
+            <info format="html">
+                <text></text>
+            </info>
+            <idnumber></idnumber>
+        </question>
+    {% endfor %}
+
+
+
+    {% for question in questions %}
+        <!-- question: {{loop.index}}  -->
+        <question type="coderunner">
+        <name>
+            <text>{{question.title}}</text>
+        </name>
+        <questiontext format="html">
+          <text>{{question.prompt}}</text>
+        </questiontext>
+        <generalfeedback format="html">
+          <text></text>
+        </generalfeedback>
+        <defaultgrade>15</defaultgrade>
+        <coderunnertype>python3_w_input</coderunnertype>
+        <template>
+{% raw %}<![CDATA[
+__saved_input__ = input
+def input(prompt=''):
+    s = __saved_input__(prompt)
+    print(s)
+    return s
+
+{{ STUDENT_ANSWER }}
+
+
+SEPARATOR = "#<ab@17943918#@>#"
+
+{% for TEST in TESTCASES %}
+{{ TEST.testcode }}
+{% if not loop.last %}
+print(SEPARATOR)
+{% endif %}
+{% endfor %}]]>{% endraw %}
+        </template>
+        <answer>{{ question.answer }}</answer>
+        <testcases>
+        {% for testcase in question.testcases %}
+            <testcase testtype="0" useasexample="{{testcase.example}}" hiderestiffail="0" mark="1.0000000" >
+            <testcode>
+                    <text>{{testcase.testcode}}</text>
+            </testcode>
+            <stdin>
+                    <text>{{testcase.stdin}}</text>
+            </stdin>
+            <expected>
+                    <text>{{testcase.expected}}</text>
+            </expected>
+            <extra>
+                    <text></text>
+            </extra>
+                <display>
+                    <text>{{testcase.display}}</text>
+                </display>
+            </testcase>
+        {% endfor %}
+        </testcases>
+      </question>
+    {% endfor %}
+</quiz>
