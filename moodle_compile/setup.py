@@ -1,6 +1,7 @@
 import pathlib
 from .parser.Question import Question
 from .parser.TestCase import TestCase
+from .parser.Category import Category
 from jinja2 import Environment, FileSystemLoader
 import re
 
@@ -71,19 +72,23 @@ def getQuestion(dir):
                 newQuestion.setTestcases(testcases)
     return newQuestion
 
-def getCategories(dir):
-    cat = []
-    question = None
+def getCategories(dir, cat = []):
     for p in dir.iterdir():
         if p.is_file():
+            parentFolder = p.parent
+            #get folder name(name of question)
+            [questionName, type] = parentFolder.name.split(".")
             question = getQuestion(dir)
-            question.setCategory(str(pathlib.Path(*p.parts[1:])))
-            return cat, question
-        cat.append(str(pathlib.Path(*p.parts[1:])))
-        [newCat, question] = getCategories(p)
-        question = question
-        cat += newCat
-    return cat, question
+            question.setTitle(questionName)
+
+            cat[-1].addQuestion(question)
+            return cat
+        if p.name.__str__()[-3] != ".":
+            catName = str(pathlib.Path(*p.parts[1:]))
+            newCat = Category(catName)
+            cat.append(newCat)
+        newCat = getCategories(p, cat)
+    return cat
 
 
 def Quiz(root):
@@ -91,10 +96,10 @@ def Quiz(root):
     file_loader = FileSystemLoader('moodle_compile/templates')
     env = Environment(loader=file_loader)
     #get our questions/answers
-    [categories, question] = getCategories(root)
-    questions = [question]
-
+    categories = getCategories(root)
+    for cat in categories:
+        print(cat.name, len(cat.questions))
     template = env.get_template('quiz.xml')
-    output = template.render(categories=categories, questions=questions)
+    output = template.render(categories=categories)
 
     return output
