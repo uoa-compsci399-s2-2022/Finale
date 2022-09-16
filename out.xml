@@ -4,7 +4,7 @@
         <!-- category: 1 -->
         <question type= "category" >
             <category>
-                <text> ass2</text>
+                <text> TestCat1</text>
             </category>
             <info format="html">
                 <text></text>
@@ -15,7 +15,7 @@
         <!-- category: 2 -->
         <question type= "category" >
             <category>
-                <text> ass2\Fairy Bread</text>
+                <text> TestCat1\TestSubCat1</text>
             </category>
             <info format="html">
                 <text></text>
@@ -26,7 +26,7 @@
         <!-- category: 3 -->
         <question type= "category" >
             <category>
-                <text> testing</text>
+                <text> TestCat2</text>
             </category>
             <info format="html">
                 <text></text>
@@ -37,7 +37,7 @@
         <!-- category: 4 -->
         <question type= "category" >
             <category>
-                <text> testing\testDir</text>
+                <text> TestCat2\TestSubCat2</text>
             </category>
             <info format="html">
                 <text></text>
@@ -49,7 +49,7 @@
     
         <question type= "category" >
             <category>
-                <text> ass2</text>
+                <text> TestCat1</text>
             </category>
             <info format="html">
                 <text></text>
@@ -59,7 +59,7 @@
     
         <question type= "category" >
             <category>
-                <text> ass2\Fairy Bread</text>
+                <text> TestCat1\TestSubCat1</text>
             </category>
             <info format="html">
                 <text></text>
@@ -69,7 +69,7 @@
     
         <question type= "category" >
             <category>
-                <text> testing</text>
+                <text> TestCat2</text>
             </category>
             <info format="html">
                 <text></text>
@@ -79,7 +79,7 @@
     
         <question type= "category" >
             <category>
-                <text> testing\testDir</text>
+                <text> TestCat2\TestSubCat2</text>
             </category>
             <info format="html">
                 <text></text>

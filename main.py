@@ -1,5 +1,5 @@
 from pathlib import Path
-from Moodle_Toml import Quiz
+from moodle_compile.setup import Quiz
 
 def main():
     root = Path("questions")

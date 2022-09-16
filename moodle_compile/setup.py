@@ -1,7 +1,7 @@
 import pathlib
-from Question import Question, TestCase
+from .parser.Question import Question
+from .parser.TestCase import TestCase
 from jinja2 import Environment, FileSystemLoader
-from pathlib import Path
 import re
 
 def getQuestion(dir):
@@ -87,8 +87,10 @@ def getCategories(dir):
 
 
 def Quiz(root):
-    file_loader = FileSystemLoader('templates')
+    #setup templates location
+    file_loader = FileSystemLoader('moodle_compile/templates')
     env = Environment(loader=file_loader)
+    #get our questions/answers
     [categories, question] = getCategories(root)
     questions = [question]
 
