@@ -97,9 +97,13 @@ def Quiz(root):
     env = Environment(loader=file_loader)
     #get our questions/answers
     categories = getCategories(root)
+    quizTemplate = env.get_template('quiz.xml')
+    coderunnerTemplate = env.get_template('coderunner.xml')
+
     for cat in categories:
-        print(cat.name, len(cat.questions))
-    template = env.get_template('quiz.xml')
-    output = template.render(categories=categories)
+        cat.convertQuestions(coderunnerTemplate)
+
+    output = quizTemplate.render(categories=categories)
+
 
     return output
