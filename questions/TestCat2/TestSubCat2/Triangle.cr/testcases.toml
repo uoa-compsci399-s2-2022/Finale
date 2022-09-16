@@ -1,0 +1,29 @@
+[[testcases]]
+example = true
+display = "SHOW"
+testcode = ''''''
+stdin = '''12.5
+6.0'''
+expected ='''Enter the base of the triangle in centimetres: 12.5
+Enter the height of the triangle in centimetres: 6.0
+The area of the rectangle is 37.50cm^2'''
+
+[[testcases]]
+example = true
+display = "SHOW"
+testcode = ''''''
+stdin = '''100
+200'''
+expected ='''Enter the base of the triangle in centimetres: 100
+Enter the height of the triangle in centimetres: 200
+The area of the triangle is 10000.00cm^2'''
+
+[[testcases]]
+example = false
+display = "SHOW"
+testcode = ''''''
+stdin = '''0
+10'''
+expected ='''Enter the base of the triangle in centimetres: 0
+Enter the height of the triangle in centimetres: 10
+The area of the triangle is 0.00cm^2'''
