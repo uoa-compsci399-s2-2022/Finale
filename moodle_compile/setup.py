@@ -1,75 +1,60 @@
 import pathlib
 from .parser.Question import Question
 from .parser.TestCase import TestCase
+from .parser.Answer import Answer
 from .parser.Category import Category
 from jinja2 import Environment, FileSystemLoader
 import re
 
 def getQuestion(dir):
     newQuestion = Question()
-    #print(dir)
     for p in dir.iterdir():
         with open(p) as f:
-            if p.name == "answer.py":
+
+            if p.suffix == ".py":
                 answer = f.read()
                 newQuestion.setAnswer(answer)
 
-            elif p.name == "prompt.md":
+            elif p.suffix == ".md":
                 prompt = f.read()
                 newQuestion.setPrompt(prompt)
-                newQuestion.setTitle(prompt[:15])
 
 
-            elif p.name == "testcases.toml":
-                #read all the test cases and create testcase
-                testcases = []
-                prev=None
-                testcaseRead = f.readlines()
-                for line in testcaseRead:
-                    #check if continuation of testcode, stdin or expected
-
-                    if prev is not None:
-                        reset = False
-                        line = line.replace("\n", "")
-                        if "'''" in line:
-                            line = line.replace("'''", "")
-                            reset = True
-
-                        if prev == "testcode":
-                            testcases[len(testcases) - 1].addtestcode(line)
-                        elif prev == "stdin":
-                            testcases[len(testcases) - 1].addstdin(line)
-                        elif prev == "expected":
-                            testcases[len(testcases) - 1].addexpected(line)
-
-                        if reset is True:
-                            prev = None
-                    #current testcase = len(testcases)
-                    elif '[[testcases]]' in line:
-                        testcases.append(TestCase())
-                    elif "example" in line:
-                        if "true" in line.lower():
-                            testcases[len(testcases) - 1].setexample("1")
+            elif p.suffix == ".toml":
+                newCase = None
+                lines = iter(f.readlines())
+                for line in lines:
+                    if line.strip() == "":
+                        continue
+                    if "[[testcases]]" in line:
+                        newCase = TestCase()
+                    elif "[[answers]]" in line:
+                        newCase = Answer()
+                    else:
+                        splitLine = line.split("=")
+                        #take what's before an equal sign and that's our variable name we are manipulating
+                        attributeName = splitLine[0].strip()
+                        attributeValue = None
+                        #get everything inbetween the three ''' '''
+                        if "'''" not in line:
+                            variableValue = splitLine[1].strip()
                         else:
-                            testcases[len(testcases) - 1].setexample("0")
-                    elif "display" in line:
-                        testcases[len(testcases) - 1].setdisplay(re.findall(r'"([^"]*)"', line)[0])
-                    elif "testcode" in line:
-                        line = line.split("'''")
-                        testcases[len(testcases) - 1].settestcode(line[1])
-                        if len(line) != 3:
-                            prev = "testcode"
-                    elif "stdin" in line:
-                        line = line.split("'''")
-                        testcases[len(testcases) - 1].setstdin(line[1].replace("\n", ""))
-                        if len(line) != 3:
-                            prev = "stdin"
-                    elif "expected" in line:
-                        line = line.split("'''")
-                        testcases[len(testcases) - 1].setexpected(line[1].replace("\n", ""))
-                        if len(line) != 3:
-                            prev = "expected"
-                newQuestion.setTestcases(testcases)
+                            equator = splitLine[1].split("'''")
+                            variableValue = equator[1]
+                            if len(equator) == 2:
+                                while True:
+                                    nextLine = next(lines)
+                                    if "'''" in nextLine:
+                                        variableValue += nextLine.split("'''")[0]
+                                        break
+                                    variableValue += nextLine
+                        newCase.__setattr__(attributeName, attributeValue)
+
+
+
+
+
+            #newQuestion.setTestcases(testcases)
     return newQuestion
 
 def getCategories(dir, cat = []):
