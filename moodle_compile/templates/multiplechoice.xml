@@ -1,0 +1,47 @@
+<question type="multichoice">
+    <name>
+        <text>{{question.title}}</text>
+    </name>
+    <questiontext format="html">
+        <text>{{question.prompt}}</text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text></text>
+    </generalfeedback>
+   <defaultgrade>69</defaultgrade>
+    <penalty>0.25</penalty>
+    <hidden>0</hidden>s
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>1</showstandardinstruction>
+
+    <correctfeedback format="html">
+      <text>Your answer is correct.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Your answer is partially correct.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Your answer is incorrect.</text>
+    </incorrectfeedback>
+
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p dir="ltr" style="text-align: left;">Asma :)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p dir="ltr" style="text-align: left;">YES SHE IS!!!</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="75" format="html">
+      <text><![CDATA[<p dir="ltr" style="text-align: left;">James</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p dir="ltr" style="text-align: left;">Yeah I'm sure he is!</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p dir="ltr" style="text-align: left;">Carl</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p dir="ltr" style="text-align: left;">He aint a lecturer</p>]]></text>
+      </feedback>
+    </answer>
+</question>
