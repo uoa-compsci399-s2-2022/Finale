@@ -40,11 +40,6 @@ class TestCase:
     def setexpected(self, expected):
         self.expected = expected
 
-    def addexpected(self, expected):
-        if expected == "":
-            self.expected += expected
-        else:
-            self.expected += "\n" + expected
 
 
 
