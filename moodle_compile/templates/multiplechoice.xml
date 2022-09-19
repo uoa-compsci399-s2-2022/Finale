@@ -25,23 +25,12 @@
     <incorrectfeedback format="html">
       <text>Your answer is incorrect.</text>
     </incorrectfeedback>
-
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p dir="ltr" style="text-align: left;">Asma :)</p>]]></text>
+    {% for answer in question.answers %}
+    <answer fraction = "{{answer.fraction}}" format="html">
+      <text>{{answer.text}}</text>
       <feedback format="html">
-        <text><![CDATA[<p dir="ltr" style="text-align: left;">YES SHE IS!!!</p>]]></text>
+        <text>{{answer.feedback}}</text>
       </feedback>
     </answer>
-    <answer fraction="75" format="html">
-      <text><![CDATA[<p dir="ltr" style="text-align: left;">James</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p dir="ltr" style="text-align: left;">Yeah I'm sure he is!</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p dir="ltr" style="text-align: left;">Carl</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p dir="ltr" style="text-align: left;">He aint a lecturer</p>]]></text>
-      </feedback>
-    </answer>
+    {% endfor %}
 </question>
