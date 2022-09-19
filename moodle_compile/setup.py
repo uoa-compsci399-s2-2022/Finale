@@ -1,5 +1,6 @@
 import pathlib
-from .parser.Question import Question
+from .parser.Question import CodeRunner
+from .parser.Question import MultipleChoice
 from .parser.TestCase import TestCase
 from .parser.Answer import Answer
 from .parser.Category import Category
@@ -7,7 +8,10 @@ from jinja2 import Environment, FileSystemLoader
 import re
 
 def getQuestion(dir):
-    newQuestion = Question()
+    if dir.suffix == ".cr":
+        newQuestion = CodeRunner()
+    elif dir.suffix == ".mc":
+        newQuestion = MultipleChoice()
     for p in dir.iterdir():
         with open(p) as f:
 
@@ -21,15 +25,15 @@ def getQuestion(dir):
 
 
             elif p.suffix == ".toml":
-                newCase = None
+                cases = []
                 lines = iter(f.readlines())
                 for line in lines:
                     if line.strip() == "":
                         continue
                     if "[[testcases]]" in line:
-                        newCase = TestCase()
+                        cases.append(TestCase())
                     elif "[[answers]]" in line:
-                        newCase = Answer()
+                        cases.append(Answer())
                     else:
                         splitLine = line.split("=")
                         #take what's before an equal sign and that's our variable name we are manipulating
@@ -37,18 +41,19 @@ def getQuestion(dir):
                         attributeValue = None
                         #get everything inbetween the three ''' '''
                         if "'''" not in line:
-                            variableValue = splitLine[1].strip()
+                            attributeValue = splitLine[1].strip()
                         else:
                             equator = splitLine[1].split("'''")
-                            variableValue = equator[1]
+                            attributeValue = equator[1]
                             if len(equator) == 2:
                                 while True:
                                     nextLine = next(lines)
                                     if "'''" in nextLine:
-                                        variableValue += nextLine.split("'''")[0]
+                                        attributeValue += nextLine.split("'''")[0]
                                         break
-                                    variableValue += nextLine
-                        newCase.__setattr__(attributeName, attributeValue)
+                                    attributeValue += nextLine
+                        cases[-1].__setattr__(attributeName, attributeValue)
+                newQuestion.setCases(cases)
 
 
 
@@ -77,16 +82,16 @@ def getCategories(dir, cat = []):
 
 
 def Quiz(root):
-    #setup templates location
     file_loader = FileSystemLoader('moodle_compile/templates')
     env = Environment(loader=file_loader)
+
     #get our questions/answers
     categories = getCategories(root)
+
     quizTemplate = env.get_template('quiz.xml')
-    coderunnerTemplate = env.get_template('coderunner.xml')
 
     for cat in categories:
-        cat.convertQuestions(coderunnerTemplate)
+        cat.convertQuestions(env)
 
     output = quizTemplate.render(categories=categories)
 
