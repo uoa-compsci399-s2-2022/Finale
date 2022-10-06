@@ -4,39 +4,19 @@
         <!-- category: 1 -->
         <question type= "category" >
             <category>
-                <text> TestCat1</text>
+                <text> TestCat2</text>
             </category>
             <info format="html">
                 <text></text>
             </info>
             <idnumber></idnumber>
         </question>
+
+        
     
         <!-- category: 2 -->
         <question type= "category" >
             <category>
-                <text> TestCat1\TestSubCat1</text>
-            </category>
-            <info format="html">
-                <text></text>
-            </info>
-            <idnumber></idnumber>
-        </question>
-    
-        <!-- category: 3 -->
-        <question type= "category" >
-            <category>
-                <text> TestCat2</text>
-            </category>
-            <info format="html">
-                <text></text>
-            </info>
-            <idnumber></idnumber>
-        </question>
-    
-        <!-- category: 4 -->
-        <question type= "category" >
-            <category>
                 <text> TestCat2\TestSubCat2</text>
             </category>
             <info format="html">
@@ -44,60 +24,15 @@
             </info>
             <idnumber></idnumber>
         </question>
-    
 
-    
-        <question type= "category" >
-            <category>
-                <text> TestCat1</text>
-            </category>
-            <info format="html">
-                <text></text>
-            </info>
-            <idnumber></idnumber>
-        </question>
-    
-        <question type= "category" >
-            <category>
-                <text> TestCat1\TestSubCat1</text>
-            </category>
-            <info format="html">
-                <text></text>
-            </info>
-            <idnumber></idnumber>
-        </question>
-    
-        <question type= "category" >
-            <category>
-                <text> TestCat2</text>
-            </category>
-            <info format="html">
-                <text></text>
-            </info>
-            <idnumber></idnumber>
-        </question>
-    
-        <question type= "category" >
-            <category>
-                <text> TestCat2\TestSubCat2</text>
-            </category>
-            <info format="html">
-                <text></text>
-            </info>
-            <idnumber></idnumber>
-        </question>
-    
-
-
-
-    
-        <!-- question: 1  -->
-        <question type="coderunner">
-        <name>
-            <text>A rectangle's a</text>
-        </name>
-        <questiontext format="html">
-          <text>A rectangle's area can be calculated using the following formula:
+        
+            <!-- question: 1  -->
+            <question type="coderunner">
+    <name>
+        <text>Rectangle</text>
+    </name>
+    <questiontext format="html">
+        <text>A rectangle's area can be calculated using the following formula:
 
 $$area = base * height$$
 
@@ -107,13 +42,13 @@ then print the area of the rectangle to two decimal places.
 Refer to the example testcases below for the required prompts and format of the message to be displayed with rectangle area.
 
 Note: The two values entered can be floating point values and will be valid non-negative numbers.</text>
-        </questiontext>
-        <generalfeedback format="html">
-          <text></text>
-        </generalfeedback>
-        <defaultgrade>15</defaultgrade>
-        <coderunnertype>python3_w_input</coderunnertype>
-        <template>
+    </questiontext>
+    <generalfeedback format="html">
+        <text></text>
+    </generalfeedback>
+   <defaultgrade>15</defaultgrade>
+   <coderunnertype>python3_w_input</coderunnertype>
+   <template>
 <![CDATA[
 __saved_input__ = input
 def input(prompt=''):
@@ -132,79 +67,288 @@ SEPARATOR = "#<ab@17943918#@>#"
 print(SEPARATOR)
 {% endif %}
 {% endfor %}]]>
-        </template>
-        <answer>base = float(input("Enter the base of the rectangle in centimetres: "))
+    </template>
+    <answer>base = float(input("Enter the base of the rectangle in centimetres: "))
 height = float(input("Enter the height of the rectangle in centimetres: "))
 
 area = base * height
 
 print(f"The area of the rectangle is {area:.2f}cm^2")</answer>
-        <testcases>
+    <testcases>
         
-            <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000" >
-            <testcode>
-                    <text></text>
-            </testcode>
-            <stdin>
-                    <text>12.5
+            <testcase testtype="0" useasexample="true" hiderestiffail="0" mark="1.0000000" >
+                <testcode>
+                        <text></text>
+                </testcode>
+                <stdin>
+                        <text>12.5
 5.5</text>
-            </stdin>
-            <expected>
-                    <text>Enter the base of the rectangle in centimetres: 12.5
+                </stdin>
+                <expected>
+                        <text>Enter the base of the rectangle in centimetres: 12.5
 Enter the height of the rectangle in centimetres: 5.5
 The area of the rectangle is 68.75cm^2</text>
-            </expected>
-            <extra>
-                    <text></text>
-            </extra>
-                <display>
-                    <text>SHOW</text>
-                </display>
+                </expected>
+                <extra>
+                        <text></text>
+                </extra>
+                    <display>
+                        <text>SHOW</text>
+                    </display>
             </testcase>
         
-            <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000" >
-            <testcode>
-                    <text></text>
-            </testcode>
-            <stdin>
-                    <text>100
+            <testcase testtype="0" useasexample="true" hiderestiffail="0" mark="1.0000000" >
+                <testcode>
+                        <text></text>
+                </testcode>
+                <stdin>
+                        <text>100
 200</text>
-            </stdin>
-            <expected>
-                    <text>Enter the base of the rectangle in centimetres: 100
+                </stdin>
+                <expected>
+                        <text>Enter the base of the rectangle in centimetres: 100
 Enter the height of the rectangle in centimetres: 200
 The area of the rectangle is 20000.00cm^2</text>
-            </expected>
-            <extra>
-                    <text></text>
-            </extra>
-                <display>
-                    <text>SHOW</text>
-                </display>
+                </expected>
+                <extra>
+                        <text></text>
+                </extra>
+                    <display>
+                        <text>SHOW</text>
+                    </display>
             </testcase>
         
-            <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
-            <testcode>
-                    <text></text>
-            </testcode>
-            <stdin>
-                    <text>0
+            <testcase testtype="0" useasexample="false" hiderestiffail="0" mark="1.0000000" >
+                <testcode>
+                        <text></text>
+                </testcode>
+                <stdin>
+                        <text>0
 10</text>
-            </stdin>
-            <expected>
-                    <text>Enter the base of the rectangle in centimetres: 0
+                </stdin>
+                <expected>
+                        <text>Enter the base of the rectangle in centimetres: 0
 Enter the height of the rectangle in centimetres: 10
 The area of the rectangle is 0.00cm^2</text>
-            </expected>
-            <extra>
-                    <text></text>
-            </extra>
-                <display>
-                    <text>SHOW</text>
-                </display>
+                </expected>
+                <extra>
+                        <text></text>
+                </extra>
+                    <display>
+                        <text>SHOW</text>
+                    </display>
             </testcase>
         
-        </testcases>
-      </question>
+        
+            	<file name="fun.js" path="/" encoding="base64">Y29uc29sZS5sb2coIkhlbGxvIFdvcmxkIik=</file>
+
+        
+            	<file name="supportfile1.txt" path="/" encoding="base64">VGhpcyBpcyBhIHN1cHBvcnQgZmlsZSwgSURLIHdoYXQgaXQgZG9lcywgYnV0IGl0J3MgaGVyZSBhbmQgc2hvdWxkIGJlIHB1dCBpbnRvIHRoZSBTdXBwb3J0IEZpbGVzIHNlY3Rpb24gb2YgdGhlIHF1ZXN0aW9u</file>
+
+        
+    </testcases>
+</question>
+        
+            <!-- question: 2  -->
+            <question type="coderunner">
+    <name>
+        <text>Triangle</text>
+    </name>
+    <questiontext format="html">
+        <text>A triangle's area can be calculated using the following formula:
+
+$$area = base * height / 2$$
+
+Write a program that prompts the user to enter the base and height of a triangle in centimetres.  The program should
+then print the area of the rectangle to two decimal places.
+
+Refer to the example testcases below for the required prompts and format of the message to be displayed with rectangle area.
+
+Note: The two values entered can be floating point values and will be valid non-negative numbers.</text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text></text>
+    </generalfeedback>
+   <defaultgrade>15</defaultgrade>
+   <coderunnertype>python3_w_input</coderunnertype>
+   <template>
+<![CDATA[
+__saved_input__ = input
+def input(prompt=''):
+    s = __saved_input__(prompt)
+    print(s)
+    return s
+
+{{ STUDENT_ANSWER }}
+
+
+SEPARATOR = "#<ab@17943918#@>#"
+
+{% for TEST in TESTCASES %}
+{{ TEST.testcode }}
+{% if not loop.last %}
+print(SEPARATOR)
+{% endif %}
+{% endfor %}]]>
+    </template>
+    <answer>base = float(input("Enter the base of the triangle in centimetres: "))
+height = float(input("Enter the height of the triangle in centimetres: "))
+
+area = base * height / 2
+
+print(f"The area of the triangle is {area:.2f}cm^2")</answer>
+    <testcases>
+        
+            <testcase testtype="0" useasexample="true" hiderestiffail="0" mark="1.0000000" >
+                <testcode>
+                        <text></text>
+                </testcode>
+                <stdin>
+                        <text>12.5
+6.0</text>
+                </stdin>
+                <expected>
+                        <text>Enter the base of the triangle in centimetres: 12.5
+Enter the height of the triangle in centimetres: 6.0
+The area of the triangle is 37.50cm^2</text>
+                </expected>
+                <extra>
+                        <text></text>
+                </extra>
+                    <display>
+                        <text>"SHOW"</text>
+                    </display>
+            </testcase>
+        
+            <testcase testtype="0" useasexample="true" hiderestiffail="0" mark="1.0000000" >
+                <testcode>
+                        <text></text>
+                </testcode>
+                <stdin>
+                        <text>100
+200</text>
+                </stdin>
+                <expected>
+                        <text>Enter the base of the triangle in centimetres: 100
+Enter the height of the triangle in centimetres: 200
+The area of the triangle is 10000.00cm^2</text>
+                </expected>
+                <extra>
+                        <text></text>
+                </extra>
+                    <display>
+                        <text>"SHOW"</text>
+                    </display>
+            </testcase>
+        
+            <testcase testtype="0" useasexample="false" hiderestiffail="0" mark="1.0000000" >
+                <testcode>
+                        <text></text>
+                </testcode>
+                <stdin>
+                        <text>0
+10</text>
+                </stdin>
+                <expected>
+                        <text>Enter the base of the triangle in centimetres: 0
+Enter the height of the triangle in centimetres: 10
+The area of the triangle is 0.00cm^2</text>
+                </expected>
+                <extra>
+                        <text></text>
+                </extra>
+                    <display>
+                        <text>"SHOW"</text>
+                    </display>
+            </testcase>
+        
+        
+            	<file name="notfun.js" path="/" encoding="base64">Y29uc29sZS5sb2coInVwc2V0Iik=</file>
+
+        
+            	<file name="supportfile2.txt" path="/" encoding="base64">VGhpcyBpcyBhIGhlbHBmdWwgc3VwcG9ydCBmaWxl</file>
+
+        
+    </testcases>
+</question>
+        
+    
+        <!-- category: 3 -->
+        <question type= "category" >
+            <category>
+                <text> TestCat2\TestSubCat3</text>
+            </category>
+            <info format="html">
+                <text></text>
+            </info>
+            <idnumber></idnumber>
+        </question>
+
+        
+    
+        <!-- category: 4 -->
+        <question type= "category" >
+            <category>
+                <text> TestCat2\TestSubCat3\TestSubcat5</text>
+            </category>
+            <info format="html">
+                <text></text>
+            </info>
+            <idnumber></idnumber>
+        </question>
+
+        
+            <!-- question: 1  -->
+            <question type="multichoice">
+    <name>
+        <text>Coolest lecturer</text>
+    </name>
+    <questiontext format="html">
+        <text>Mirror, Mirror through the code, who's the best lecturer of them all?</text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text></text>
+    </generalfeedback>
+   <defaultgrade>69</defaultgrade>
+    <penalty>0.25</penalty>
+    <hidden>0</hidden>s
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>1</showstandardinstruction>
+
+    <correctfeedback format="html">
+      <text>Your answer is correct.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Your answer is partially correct.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Your answer is incorrect.</text>
+    </incorrectfeedback>
+    
+    <answer fraction = "100" format="html">
+      <text>"Asma :)"</text>
+      <feedback format="html">
+        <text>"Yes she is!!!"</text>
+      </feedback>
+    </answer>
+    
+    <answer fraction = "75" format="html">
+      <text>"James"</text>
+      <feedback format="html">
+        <text>"I'm sure he's great!"</text>
+      </feedback>
+    </answer>
+    
+    <answer fraction = "0" format="html">
+      <text>"Carl. T"</text>
+      <feedback format="html">
+        <text>"No he's not even a lecturer"</text>
+      </feedback>
+    </answer>
+    
+</question>
+        
     
 </quiz>
