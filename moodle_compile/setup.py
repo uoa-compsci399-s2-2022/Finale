@@ -43,6 +43,7 @@ def getQuestion(dir):
                         if "'''" not in line:
                             attributeValue = splitLine[1].strip()
                         else:
+<<<<<<< Updated upstream
                             equator = splitLine[1].split("'''")
                             attributeValue = equator[1]
                             if len(equator) == 2:
@@ -60,6 +61,35 @@ def getQuestion(dir):
 
 
             #newQuestion.setTestcases(testcases)
+=======
+                            splitLine = line.split("=")
+                            #take what's before an equal sign and that's our variable name we are manipulating
+                            attributeName = splitLine[0].strip()
+                            attributeValue = None
+                            #get everything inbetween the three ''' '''
+                            if "'''" not in line:
+                                attributeValue = splitLine[1].strip()
+                            else:
+                                equator = splitLine[1].split("'''")
+                                attributeValue = equator[1]
+                                if len(equator) == 2:
+                                    while True:
+                                        nextLine = next(lines)
+                                        if "'''" in nextLine:
+                                            attributeValue += nextLine.split("'''")[0]
+                                            break
+                                        attributeValue += nextLine
+                            cases[-1].__setattr__(attributeName, attributeValue)
+                    newQuestion.setCases(cases)
+        else:
+            for sf in p.iterdir():
+                if sf.is_file():
+                    with open(sf) as f:
+                        content = f.read()
+                        newFile = File(sf.name, '/')
+                        newFile.setContent(base64.b64encode(bytes(content, "utf-8")))
+                        newQuestion.addFile(newFile)
+>>>>>>> Stashed changes
     return newQuestion
 
 def getCategories(dir, cat = []):

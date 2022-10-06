@@ -34,6 +34,14 @@ class CodeRunner(Question):
     def setCases(self, testcases):
         self.testcases = testcases
 
+    def testTestCases(self):
+        #move the input part to a previous line
+        #convert Answer inputs to console
+        #testCaseCode = self.answer.replace('input(', 'print(')
+        #print(testCaseCode)
+        for loopNum, test in enumerate(self.testcases):
+            test.testExpected(self, loopNum)
+
 
 class MultipleChoice(Question):
     def __init__(self):
