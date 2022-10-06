@@ -51,5 +51,9 @@ print(SEPARATOR)
                     </display>
             </testcase>
         {% endfor %}
+        {% for file in question.files %}
+            	<file name="{{file.name}}" path="{{file.path}}" encoding="{{file.encoding}}">{{file.content}}</file>
+
+        {% endfor %}
     </testcases>
 </question>
