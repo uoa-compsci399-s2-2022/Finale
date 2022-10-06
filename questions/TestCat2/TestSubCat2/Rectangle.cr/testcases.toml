@@ -14,9 +14,6 @@ display = '''SHOW'''
 testcode = ''''''
 stdin = '''100
 200'''
-expected = '''Enter the base of the rectangle in centimetres: 100
-Enter the height of the rectangle in centimetres: 200
-The area of the rectangle is 20000.00cm^2'''
 
 [[testcases]]
 example = false

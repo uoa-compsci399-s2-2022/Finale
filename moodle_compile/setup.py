@@ -58,7 +58,6 @@ def getQuestion(dir):
                     newQuestion.setCases(cases)
         else:
             for sf in p.iterdir():
-                print(sf)
                 if sf.is_file():
                     with open(sf) as f:
                         content = f.read()

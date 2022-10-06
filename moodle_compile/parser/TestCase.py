@@ -1,3 +1,7 @@
+import sys
+from io import StringIO
+from contextlib import redirect_stdout
+
 class TestCase:
     def __init__(self, example, display, testcode, stdin, expected):
         self.example = example
@@ -13,32 +17,30 @@ class TestCase:
         self.stdin = ""
         self.expected = ""
 
-    def setexample(self, example):
-        self.example = example
+    def testExpected(self, question, testNumber):
+        stds = self.stdin.split("\n")
+        splitAnswer = question.answer.split("\n")
 
-    def setdisplay(self, display):
-        self.display = display
+        #add a print statement for the input, since setting the sys.stdin doesn't print the user input
+        for i in range(len(splitAnswer)):
+            if "input(" in splitAnswer[i]:
+                splitAnswer[i] += '\nprint("'+ stds.pop(0) + '")'
+        answer = "\n".join(splitAnswer)
 
-    def settestcode(self, testcode):
-        self.testcode = testcode
+        #runs the answer using the IO and then saves it in a temporary console
+        sys.stdin = StringIO(self.stdin)
+        with redirect_stdout(StringIO()) as tempConsole:
+            exec(answer)
 
-    def addtestcode(self, testcode):
-        if testcode == "":
-            self.testcode += testcode
+        knownExpected = tempConsole.getvalue()[:-1]
+        if self.expected == "":
+            #add expected output using answer
+            self.expected = knownExpected
         else:
-            self.testcode += "\n" + testcode
-
-    def setstdin(self, stdin):
-        self.stdin = stdin
-
-    def addstdin(self, stdin):
-        if stdin == "":
-            self.stdin += stdin
-        else:
-            self.stdin += "\n" + stdin
-
-    def setexpected(self, expected):
-        self.expected = expected
+            #run expected using answer and compare
+            if(knownExpected != self.expected):
+                raise Exception(f"Testcase doesn't have correct expected output for CodeRunner question titles='{question.title}'. Testcase #{testNumber+1}")
+            
 
 
 
