@@ -50,6 +50,9 @@ def getQuestion(dir):
 
                 cases = []
                 lines = iter(f.readlines())
+
+                has_hidden_case = False
+
                 for line in lines:
                     if line.strip() == "":
                         continue
@@ -58,6 +61,8 @@ def getQuestion(dir):
                     elif "[[answers]]" in line:
                         cases.append(Answer())
                     else:
+                        if "example = false" in line:
+                            has_hidden_case = True
                         splitLine = line.split("=")
                         #take what's before an equal sign and that's our variable name we are manipulating
                         attributeName = splitLine[0].strip()
@@ -76,7 +81,12 @@ def getQuestion(dir):
                                         break
                                     attributeValue += nextLine
                         cases[-1].__setattr__(attributeName, attributeValue)
-                newQuestion.setCases(cases)          
+                newQuestion.setCases(cases)
+
+                # detect questions without hidden cases
+                if p.suffix == ".py" and not has_hidden_case:
+                    print("[{}]   Warning: No hidden cases found".format(datetime.now().strftime("%H:%M:%S")))
+
     return newQuestion
 
 
