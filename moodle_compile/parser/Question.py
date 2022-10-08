@@ -1,7 +1,7 @@
 import pathlib
 from jinja2 import Environment, FileSystemLoader
 import re
-
+from datetime import datetime
 
 
 class Question:
@@ -10,7 +10,6 @@ class Question:
         self.prompt = prompt
         self.grade = grade
         self.files = []
-        
 
     def __init__(self):
         self.title = "null"
@@ -55,5 +54,6 @@ class MultipleChoice(Question):
     def __init__(self):
         super(MultipleChoice, self).__init__()
         self.template = 'multiplechoice.xml'
+
     def setCases(self, answers):
         self.answers = answers
