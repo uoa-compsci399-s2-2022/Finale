@@ -19,6 +19,7 @@ def getQuestion(dir):
     elif dir.suffix == '.sa':
         newQuestion = ShortAnswer()
     for p in dir.iterdir():
+        if not p.is_file():
             for sf in p.iterdir():
                 if sf.is_file():
                     with open(sf) as f:
@@ -27,7 +28,7 @@ def getQuestion(dir):
                         newFile.setContent(base64.b64encode(bytes(content, "utf-8")))
                         newQuestion.addFile(newFile)
             continue
-            
+
         with open(p) as f:
             if p.suffix == ".py":
                 answer = f.read()
