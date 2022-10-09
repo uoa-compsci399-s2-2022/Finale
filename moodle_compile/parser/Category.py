@@ -18,7 +18,7 @@ class Category:
         for questionOBJ in self.questions:
             if(isinstance(questionOBJ, CodeRunner)):
                 questionOBJ.testTestCases()
-            template = env.get_template(questionOBJ.template)
+            template = env.get_template(questionOBJ._XML_NAME)
 
             questionTemplate.append(template.render(question=questionOBJ))
 

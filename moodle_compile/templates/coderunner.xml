@@ -1,36 +1,67 @@
 <question type="coderunner">
     <name>
-        <text>{{question.title}}</text>
+        <text>{{ title }}</text>
     </name>
+    <coderunnertype>{{ coderunnertype }}</coderunnertype>
+    <precheck>{{ precheck }}</precheck>
     <questiontext format="html">
-        <text>{{question.prompt}}</text>
+        <text><![CDATA[{{ prompt }}]]></text>
+        {% for image in images %}
+            <file
+                    name="{{ image.name }}"
+                    path="/"
+                    encoding="base64"
+            >{{ image.data }}
+            </file>
+        {% endfor %}
     </questiontext>
+    <answer><![CDATA[{{ answer }}]]></answer>
+    <answerboxlines>{{ answerlines }}</answerboxlines>
+    <answerpreload><![CDATA[{{ answerpreload }}]]></answerpreload>
     <generalfeedback format="html">
         <text></text>
     </generalfeedback>
-   <defaultgrade>15</defaultgrade>
-   <coderunnertype>python3_w_input</coderunnertype>
-   <template>
-{% raw %}<![CDATA[
-__saved_input__ = input
-def input(prompt=''):
-    s = __saved_input__(prompt)
-    print(s)
-    return s
-
-{{ STUDENT_ANSWER }}
-
-
-SEPARATOR = "#<ab@17943918#@>#"
-
-{% for TEST in TESTCASES %}
-{{ TEST.testcode }}
-{% if not loop.last %}
-print(SEPARATOR)
-{% endif %}
-{% endfor %}]]>{% endraw %}
+    <defaultgrade>{{defaultgrade}}</defaultgrade>
+    <penalty>{{penalty}}</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0, 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50</penaltyregime>
+    <hidecheck>0</hidecheck>
+    <showsource>0</showsource>
+    <answerboxcolumns>100</answerboxcolumns>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template>{% if template is not none %}<![CDATA[{{ template }}]]>{% endif %}
     </template>
-    <answer>{{ question.answer }}</answer>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <templateparamslang>None</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsevald>{}</templateparamsevald>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
     <testcases>
         {% for testcase in question.testcases %}
             <testcase testtype="0" useasexample="{{testcase.example}}" hiderestiffail="0" mark="1.0000000" >
