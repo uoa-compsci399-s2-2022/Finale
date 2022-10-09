@@ -16,7 +16,7 @@ stdin = '''100
 200'''
 
 [[testcases]]
-example = false
+example = true
 display = '''SHOW'''
 testcode = ''''''
 stdin = '''0

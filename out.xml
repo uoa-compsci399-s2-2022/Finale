@@ -30,6 +30,7 @@
         <!-- category: 3 -->
         <question type= "category" >
             <category>
+                <text> TestCat2\TestSubCat2</text>
             </category>
             <info format="html">
                 <text></text>
@@ -41,51 +42,61 @@
             <!-- question: 1  -->
             <question type="coderunner">
     <name>
-        <text>Rectangle</text>
+        <text></text>
     </name>
+    <coderunnertype></coderunnertype>
+    <precheck></precheck>
     <questiontext format="html">
-        <text>A rectangle's area can be calculated using the following formula:
-
-$$area = base * height$$
-
-Write a program that prompts the user to enter the base and height of a rectangle in centimetres.  The program should
-then print the area of the rectangle to two decimal places.
-
-Refer to the example testcases below for the required prompts and format of the message to be displayed with rectangle area.
-
-Note: The two values entered can be floating point values and will be valid non-negative numbers.</text>
+        <text><![CDATA[]]></text>
+        
     </questiontext>
+    <answer><![CDATA[]]></answer>
+    <answerboxlines></answerboxlines>
+    <answerpreload><![CDATA[]]></answerpreload>
     <generalfeedback format="html">
         <text></text>
     </generalfeedback>
-   <defaultgrade>15</defaultgrade>
-   <coderunnertype>python3_w_input</coderunnertype>
-   <template>
-<![CDATA[
-__saved_input__ = input
-def input(prompt=''):
-    s = __saved_input__(prompt)
-    print(s)
-    return s
-
-{{ STUDENT_ANSWER }}
-
-
-SEPARATOR = "#<ab@17943918#@>#"
-
-{% for TEST in TESTCASES %}
-{{ TEST.testcode }}
-{% if not loop.last %}
-print(SEPARATOR)
-{% endif %}
-{% endfor %}]]>
+    <defaultgrade></defaultgrade>
+    <penalty></penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0, 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50</penaltyregime>
+    <hidecheck>0</hidecheck>
+    <showsource>0</showsource>
+    <answerboxcolumns>100</answerboxcolumns>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template><![CDATA[]]>
     </template>
-    <answer>base = float(input("Enter the base of the rectangle in centimetres: "))
-height = float(input("Enter the height of the rectangle in centimetres: "))
-
-area = base * height
-
-print(f"The area of the rectangle is {area:.2f}cm^2")</answer>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <templateparamslang>None</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsevald>{}</templateparamsevald>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
     <testcases>
         
             <testcase testtype="0" useasexample="true" hiderestiffail="0" mark="1.0000000" >
@@ -130,7 +141,7 @@ The area of the rectangle is 20000.00cm^2</text>
                     </display>
             </testcase>
         
-            <testcase testtype="0" useasexample="false" hiderestiffail="0" mark="1.0000000" >
+            <testcase testtype="0" useasexample="true" hiderestiffail="0" mark="1.0000000" >
                 <testcode>
                         <text></text>
                 </testcode>
@@ -152,10 +163,10 @@ The area of the rectangle is 0.00cm^2</text>
             </testcase>
         
         
-            	<file name="supportfile1.txt" path="/" encoding="base64">VGhpcyBpcyBhIHN1cHBvcnQgZmlsZSwgSURLIHdoYXQgaXQgZG9lcywgYnV0IGl0J3MgaGVyZSBhbmQgc2hvdWxkIGJlIHB1dCBpbnRvIHRoZSBTdXBwb3J0IEZpbGVzIHNlY3Rpb24gb2YgdGhlIHF1ZXN0aW9u</file>
+            	<file name="fun.js" path="/" encoding="base64">Y29uc29sZS5sb2coIkhlbGxvIFdvcmxkIik=</file>
 
         
-            	<file name="fun.js" path="/" encoding="base64">Y29uc29sZS5sb2coIkhlbGxvIFdvcmxkIik=</file>
+            	<file name="supportfile1.txt" path="/" encoding="base64">VGhpcyBpcyBhIHN1cHBvcnQgZmlsZSwgSURLIHdoYXQgaXQgZG9lcywgYnV0IGl0J3MgaGVyZSBhbmQgc2hvdWxkIGJlIHB1dCBpbnRvIHRoZSBTdXBwb3J0IEZpbGVzIHNlY3Rpb24gb2YgdGhlIHF1ZXN0aW9u</file>
 
         
     </testcases>
@@ -164,51 +175,61 @@ The area of the rectangle is 0.00cm^2</text>
             <!-- question: 2  -->
             <question type="coderunner">
     <name>
-        <text>Triangle</text>
+        <text></text>
     </name>
+    <coderunnertype></coderunnertype>
+    <precheck></precheck>
     <questiontext format="html">
-        <text>A triangle's area can be calculated using the following formula:
-
-$$area = base * height / 2$$
-
-Write a program that prompts the user to enter the base and height of a triangle in centimetres.  The program should
-then print the area of the rectangle to two decimal places.
-
-Refer to the example testcases below for the required prompts and format of the message to be displayed with rectangle area.
-
-Note: The two values entered can be floating point values and will be valid non-negative numbers.</text>
+        <text><![CDATA[]]></text>
+        
     </questiontext>
+    <answer><![CDATA[]]></answer>
+    <answerboxlines></answerboxlines>
+    <answerpreload><![CDATA[]]></answerpreload>
     <generalfeedback format="html">
         <text></text>
     </generalfeedback>
-   <defaultgrade>15</defaultgrade>
-   <coderunnertype>python3_w_input</coderunnertype>
-   <template>
-<![CDATA[
-__saved_input__ = input
-def input(prompt=''):
-    s = __saved_input__(prompt)
-    print(s)
-    return s
-
-{{ STUDENT_ANSWER }}
-
-
-SEPARATOR = "#<ab@17943918#@>#"
-
-{% for TEST in TESTCASES %}
-{{ TEST.testcode }}
-{% if not loop.last %}
-print(SEPARATOR)
-{% endif %}
-{% endfor %}]]>
+    <defaultgrade></defaultgrade>
+    <penalty></penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0, 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50</penaltyregime>
+    <hidecheck>0</hidecheck>
+    <showsource>0</showsource>
+    <answerboxcolumns>100</answerboxcolumns>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template><![CDATA[]]>
     </template>
-    <answer>base = float(input("Enter the base of the triangle in centimetres: "))
-height = float(input("Enter the height of the triangle in centimetres: "))
-
-area = base * height / 2
-
-print(f"The area of the triangle is {area:.2f}cm^2")</answer>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <templateparamslang>None</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsevald>{}</templateparamsevald>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
     <testcases>
         
             <testcase testtype="0" useasexample="true" hiderestiffail="0" mark="1.0000000" >
@@ -275,12 +296,12 @@ The area of the triangle is 0.00cm^2</text>
             </testcase>
         
         
+            	<file name="notfun.js" path="/" encoding="base64">Y29uc29sZS5sb2coInVwc2V0Iik=</file>
+
+        
             	<file name="supportfile2.txt" path="/" encoding="base64">VGhpcyBpcyBhIGhlbHBmdWwgc3VwcG9ydCBmaWxl</file>
 
         
-<<<<<<< HEAD
-            	<file name="notfun.js" path="/" encoding="base64">Y29uc29sZS5sb2coInVwc2V0Iik=</file>
-=======
     </testcases>
 </question>
         
@@ -308,11 +329,115 @@ The area of the triangle is 0.00cm^2</text>
             </info>
             <idnumber></idnumber>
         </question>
->>>>>>> 6cd153056f5d5b469a0d3da875237a6a86828b90
 
         
-    </testcases>
+            <!-- question: 1  -->
+            <question type="multichoice">
+    <name>
+        <text>Coolest lecturer</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[Mirror, Mirror through the code, who's the best lecturer of them all?]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+        <text></text>
+    </generalfeedback>
+   <defaultgrade></defaultgrade>
+    <penalty></penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single></single>
+    <shuffleanswers></shuffleanswers>
+    <answernumbering></answernumbering>
+    <showstandardinstruction>1</showstandardinstruction>
+
+    <correctfeedback format="html">
+      <text>Your answer is correct.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Your answer is partially correct.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Your answer is incorrect.</text>
+    </incorrectfeedback>
+    
+    <answer fraction = "100" format="html">
+      <text>"Asma :)"</text>
+      <feedback format="html">
+        <text>"Yes she is!!!"</text>
+      </feedback>
+    </answer>
+    
+    <answer fraction = "75" format="html">
+      <text>"James"</text>
+      <feedback format="html">
+        <text>"I'm sure he's great!"</text>
+      </feedback>
+    </answer>
+    
+    <answer fraction = "0" format="html">
+      <text>"Carl. T"</text>
+      <feedback format="html">
+        <text>"No he's not even a lecturer"</text>
+      </feedback>
+    </answer>
+    
 </question>
+        
+    
+        <!-- category: 6 -->
+        <question type= "category" >
+            <category>
+                <text> TestCat2\TestSubCat4</text>
+            </category>
+            <info format="html">
+                <text></text>
+            </info>
+            <idnumber></idnumber>
+        </question>
+
+        
+            <!-- question: 1  -->
+            <question type="shortanswer">
+    <name>
+        <text>MyShortAnswer</text>
+    </name>
+    <questiontext format="html">
+        <text><![CDATA[]]></text>
+    </questiontext>
+    <usecase></usecase>
+    <generalfeedback format="html">
+        <text>Giving feedback is really important!
+</text>
+    </generalfeedback>
+    <defaultgrade></defaultgrade>
+    <penalty></penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+
+    
+    <answer fraction="100" format="moodle_auto_format">
+      <text>"Definitely not right."</text>
+      <feedback format="html">
+        <text>"Wow, You got it..."</text>
+      </feedback>
+    </answer>
+    
+    <answer fraction="50" format="moodle_auto_format">
+      <text>"Maybe this is right?"</text>
+      <feedback format="html">
+        <text>"Are you sure?"</text>
+      </feedback>
+    </answer>
+    
+    <answer fraction="25" format="moodle_auto_format">
+      <text>"This is right"</text>
+      <feedback format="html">
+        <text>"No it's not"</text>
+      </feedback>
+    </answer>
+    
+  </question>
         
     
 </quiz>

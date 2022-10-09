@@ -56,6 +56,8 @@ def getQuestion(dir):
 
             elif p.suffix == ".toml":
                 fileRead = f.readlines()
+                has_hidden_case = False
+
                 #Validation
                 validate(fileRead)
                 print("[{}]   Input format: .toml".format(datetime.now().strftime("%H:%M:%S")))
@@ -70,6 +72,9 @@ def getQuestion(dir):
                     elif "[[answers]]" in line:
                         cases.append(Answer())
                     else:
+                        if "example = false" in line:
+                            has_hidden_case = True
+
                         splitLine = line.split("=")
                         #take what's before an equal sign and that's our variable name we are manipulating
                         attributeName = splitLine[0].strip()
@@ -88,7 +93,11 @@ def getQuestion(dir):
                                         break
                                     attributeValue += nextLine
                         cases[-1].__setattr__(attributeName, attributeValue)
-                newQuestion.setCases(cases)          
+                newQuestion.setCases(cases)
+
+                # detect questions without hidden cases
+                if dir.suffix == ".cr" and not has_hidden_case:
+                    print("[{}]   Warning: No hidden cases found".format(datetime.now().strftime("%H:%M:%S")))
     return newQuestion
 
 
