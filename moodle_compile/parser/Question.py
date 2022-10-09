@@ -57,3 +57,10 @@ class MultipleChoice(Question):
         self.template = 'multiplechoice.xml'
     def setCases(self, answers):
         self.answers = answers
+
+class ShortAnswer(Question):
+    def __init__(self):
+        super(ShortAnswer, self).__init__()
+        self.template = 'shortanswer.xml'
+    def setCases(self, answers):
+        self.answers = answers
