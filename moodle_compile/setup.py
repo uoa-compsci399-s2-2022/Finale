@@ -11,10 +11,8 @@ from .parser.Category import Category
 from jinja2 import Environment, FileSystemLoader
 from datetime import datetime
 
-def validate(file):
-    f = file
-    content = f.read().split('\n')
-    print(content)
+def validate(fileLines):
+    print("Content:", fileLines)
 
 
 def getQuestion(dir):
@@ -56,12 +54,13 @@ def getQuestion(dir):
                 newQuestion.setFeedback(feedback)
 
             elif p.suffix == ".toml":
+                fileRead = f.readlines()
                 #Validation
-                validate(f)
+                validate(fileRead)
                 print("[{}]   Input format: .toml".format(datetime.now().strftime("%H:%M:%S")))
 
                 cases = []
-                lines = iter(f.readlines())
+                lines = iter(fileRead)
                 for line in lines:
                     if line.strip() == "":
                         continue
