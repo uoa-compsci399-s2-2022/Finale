@@ -8,6 +8,7 @@ from .parser.Answer import Answer
 from .parser.File import File
 from .parser.Category import Category
 from jinja2 import Environment, FileSystemLoader
+from datetime import datetime
 
 def validate(file):
     f = file
@@ -16,9 +17,13 @@ def validate(file):
 
 
 def getQuestion(dir):
+    print("[{}] Loading questions from {}".format(datetime.now().strftime("%H:%M:%S"), dir))
+
     if dir.suffix == ".cr":
+        print("[{}]   Question format: CodeRunner".format(datetime.now().strftime("%H:%M:%S")))
         newQuestion = CodeRunner()
     elif dir.suffix == ".mc":
+        print("[{}]   Question format: Multiple choice".format(datetime.now().strftime("%H:%M:%S")))
         newQuestion = MultipleChoice()
     elif dir.suffix == ".sa":
         newQuestion = ShortAnswer()
@@ -35,10 +40,14 @@ def getQuestion(dir):
 
         with open(p) as f:
             if p.suffix == ".py":
+                print("[{}]   Input format: .py".format(datetime.now().strftime("%H:%M:%S")))
+
                 answer = f.read()
                 newQuestion.setAnswer(answer)
 
             elif p.suffix == ".md":
+                print("[{}]   Input format: .md".format(datetime.now().strftime("%H:%M:%S")))
+
                 prompt = f.read()
                 newQuestion.setPrompt(prompt)
             elif p.suffix == ".txt":
@@ -48,6 +57,8 @@ def getQuestion(dir):
             elif p.suffix == ".toml":
                 #Validation
                 validate(f)
+                print("[{}]   Input format: .toml".format(datetime.now().strftime("%H:%M:%S")))
+
                 cases = []
                 lines = iter(f.readlines())
                 for line in lines:
@@ -78,6 +89,7 @@ def getQuestion(dir):
                         cases[-1].__setattr__(attributeName, attributeValue)
                 newQuestion.setCases(cases)          
     return newQuestion
+
 
 def IterateChildren(dir, cat, globLocations, globPattern):
     #if it's a question
