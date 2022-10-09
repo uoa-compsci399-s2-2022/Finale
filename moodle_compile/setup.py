@@ -14,6 +14,7 @@ from datetime import datetime
 def validate(file):
     f = file
     content = f.read().split('\n')
+    print("\n\n")
     print(content)
 
 

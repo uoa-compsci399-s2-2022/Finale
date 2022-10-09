@@ -8,8 +8,8 @@
     <generalfeedback format="html">
         <text>{{question.feedback}}</text>
     </generalfeedback>
-    <defaultgrade>69</defaultgrade>
-    <penalty>0.25</penalty>
+    <defaultgrade>420.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
     <hidden>0</hidden>
     <idnumber></idnumber>
     <usecase>0</usecase>
