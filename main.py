@@ -1,7 +1,15 @@
 from pathlib import Path
 from moodle_compile.setup import importQuestions
+from datetime import datetime
 
 def main():
+    print("============")
+    print("Finale 1.0.0")
+    print("============")
+    print()
+
+    print("[{}] Starting Finale".format(datetime.now().strftime("%H:%M:%S")))
+
     #targeted export by glob & exclusion by glob
     #export Children decides whether or not you want to export 
     #children of glob pattern category
@@ -12,7 +20,6 @@ def main():
         "blackListGlob": "Null",
         "IterateChildren": False
     }
-    
 
     root = Path("questions")
     xml = importQuestions(root, globPattern)
@@ -20,4 +27,4 @@ def main():
         f.write(xml)
 
 if __name__ == '__main__':
-    main() 
+    main()

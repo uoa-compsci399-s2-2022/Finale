@@ -40,8 +40,3 @@ class TestCase:
             #run expected using answer and compare
             if(knownExpected != self.expected):
                 raise Exception(f"Testcase doesn't have correct expected output for CodeRunner question titles='{question.title}'. Testcase #{testNumber+1}")
-            
-
-
-
-

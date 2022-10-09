@@ -4,7 +4,6 @@ import re
 from .parser.Question import CodeRunner
 from .parser.Question import MultipleChoice
 from .parser.TestCase import TestCase
-from .parser.Question import ShortAnswer
 from .parser.Answer import Answer
 from .parser.File import File
 from .parser.Category import Category
@@ -16,8 +15,6 @@ def getQuestion(dir):
         newQuestion = CodeRunner()
     elif dir.suffix == ".mc":
         newQuestion = MultipleChoice()
-    elif dir.suffix == '.sa':
-        newQuestion = ShortAnswer()
     for p in dir.iterdir():
         if not p.is_file():
             for sf in p.iterdir():
@@ -38,10 +35,6 @@ def getQuestion(dir):
                 prompt = f.read()
                 newQuestion.setPrompt(prompt)
 
-            #Adds functionality for feedback for sa questions.
-            elif p.suffix == '.txt':
-                feedback = f.read()
-                newQuestion.setFeedback(feedback)
 
             elif p.suffix == ".toml":
                 cases = []
