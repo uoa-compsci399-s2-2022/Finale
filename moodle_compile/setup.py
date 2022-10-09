@@ -5,6 +5,7 @@ from .parser.Question import CodeRunner
 from .parser.Question import MultipleChoice
 from .parser.TestCase import TestCase
 from .parser.Answer import Answer
+from .parser.Question import ShortAnswer
 from .parser.File import File
 from .parser.Category import Category
 from jinja2 import Environment, FileSystemLoader
