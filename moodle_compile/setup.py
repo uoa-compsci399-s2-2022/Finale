@@ -9,12 +9,19 @@ from .parser.File import File
 from .parser.Category import Category
 from jinja2 import Environment, FileSystemLoader
 
+def validate(file):
+    f = file
+    content = f.read().split('\n')
+    print(content)
+
 
 def getQuestion(dir):
     if dir.suffix == ".cr":
         newQuestion = CodeRunner()
     elif dir.suffix == ".mc":
         newQuestion = MultipleChoice()
+    elif dir.suffix == ".sa":
+        newQuestion = ShortAnswer()
     for p in dir.iterdir():
         if not p.is_file():
             for sf in p.iterdir():
@@ -34,9 +41,13 @@ def getQuestion(dir):
             elif p.suffix == ".md":
                 prompt = f.read()
                 newQuestion.setPrompt(prompt)
-
+            elif p.suffix == ".txt":
+                feedback = f.read()
+                newQuestion.setFeedback(feedback)
 
             elif p.suffix == ".toml":
+                #Validation
+                validate(f)
                 cases = []
                 lines = iter(f.readlines())
                 for line in lines:
