@@ -8,19 +8,13 @@ from .parser.Answer import Answer
 from .parser.File import File
 from .parser.Category import Category
 from jinja2 import Environment, FileSystemLoader
-from datetime import datetime
 
 
 def getQuestion(dir):
-    print("[{}] Loading questions from {}".format(datetime.now().strftime("%H:%M:%S"), dir))
-
     if dir.suffix == ".cr":
-        print("[{}]   Question format: CodeRunner".format(datetime.now().strftime("%H:%M:%S")))
         newQuestion = CodeRunner()
     elif dir.suffix == ".mc":
-        print("[{}]   Question format: Multiple choice".format(datetime.now().strftime("%H:%M:%S")))
         newQuestion = MultipleChoice()
-
     for p in dir.iterdir():
         if not p.is_file():
             for sf in p.iterdir():
@@ -34,25 +28,17 @@ def getQuestion(dir):
             
         with open(p) as f:
             if p.suffix == ".py":
-                print("[{}]   Input format: .py".format(datetime.now().strftime("%H:%M:%S")))
-
                 answer = f.read()
                 newQuestion.setAnswer(answer)
 
             elif p.suffix == ".md":
-                print("[{}]   Input format: .md".format(datetime.now().strftime("%H:%M:%S")))
-
                 prompt = f.read()
                 newQuestion.setPrompt(prompt)
 
-            elif p.suffix == ".toml":
-                print("[{}]   Input format: .toml".format(datetime.now().strftime("%H:%M:%S")))
 
+            elif p.suffix == ".toml":
                 cases = []
                 lines = iter(f.readlines())
-
-                has_hidden_case = False
-
                 for line in lines:
                     if line.strip() == "":
                         continue
@@ -61,8 +47,6 @@ def getQuestion(dir):
                     elif "[[answers]]" in line:
                         cases.append(Answer())
                     else:
-                        if "example = false" in line:
-                            has_hidden_case = True
                         splitLine = line.split("=")
                         #take what's before an equal sign and that's our variable name we are manipulating
                         attributeName = splitLine[0].strip()
@@ -81,14 +65,8 @@ def getQuestion(dir):
                                         break
                                     attributeValue += nextLine
                         cases[-1].__setattr__(attributeName, attributeValue)
-                newQuestion.setCases(cases)
-
-                # detect questions without hidden cases
-                if p.suffix == ".py" and not has_hidden_case:
-                    print("[{}]   Warning: No hidden cases found".format(datetime.now().strftime("%H:%M:%S")))
-
+                newQuestion.setCases(cases)          
     return newQuestion
-
 
 def IterateChildren(dir, cat, globLocations, globPattern):
     #if it's a question
@@ -105,6 +83,7 @@ def IterateChildren(dir, cat, globLocations, globPattern):
 
                 cat = (IterateChildren(p, cat, globLocations, globPattern))
     return cat
+    
 
 
 def createCategory(location, startingPart = 1):
@@ -114,15 +93,14 @@ def createCategory(location, startingPart = 1):
         catName = str(pathlib.Path(*location.parts[startingPart:]))
     return Category(catName)
 
-
 def importQuestions(root, globPattern):
     file_loader = FileSystemLoader('moodle_compile/templates')
 
+    
     globLocations = {
         "whitelist": list(root.rglob(globPattern["exportGlob"])),
         "blacklist": list(root.rglob(globPattern["blackListGlob"]))
-    }
-
+    } 
     if globPattern["blackListGlob"] == "":
         globLocations["blacklist"] = []
 
@@ -140,6 +118,7 @@ def importQuestions(root, globPattern):
     if numQuestions == len(globLocations["whitelist"]):
         categories.append(createCategory(globLocations["whitelist"][0].parent, smallestParent-1))
 
+
     for path in globLocations["whitelist"]:
         #if path contains anything from any of the blacklist strings
         for location in globLocations["blacklist"]:
@@ -150,6 +129,8 @@ def importQuestions(root, globPattern):
             continue
         break
 
+
+    
     print(categories)
     env = Environment(loader=file_loader)
 
@@ -162,5 +143,6 @@ def importQuestions(root, globPattern):
         cat.convertQuestions(env)
 
     output = quizTemplate.render(categories=categories)
+
 
     return output
