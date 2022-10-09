@@ -64,3 +64,6 @@ class ShortAnswer(Question):
         self.template = 'shortanswer.xml'
     def setCases(self, answers):
         self.answers = answers
+
+    def setFeedback(self, feedback):
+        self.feedback = feedback

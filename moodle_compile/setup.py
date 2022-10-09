@@ -30,7 +30,7 @@ def getQuestion(dir):
                         newFile.setContent(base64.b64encode(bytes(content, "utf-8")))
                         newQuestion.addFile(newFile)
             continue
-            
+
         with open(p) as f:
             if p.suffix == ".py":
                 print("[{}]   Input format: .py".format(datetime.now().strftime("%H:%M:%S")))
