@@ -3,6 +3,7 @@ import base64
 from .parser.Question import CodeRunner
 from .parser.Question import MultipleChoice
 from .parser.TestCase import TestCase
+from .parser.Question import ShortAnswer
 from .parser.Answer import Answer
 from .parser.File import File
 from .parser.Category import Category
@@ -14,18 +15,22 @@ def getQuestion(dir):
         newQuestion = CodeRunner()
     elif dir.suffix == ".mc":
         newQuestion = MultipleChoice()
+    elif dir.suffix == '.sa':
+        newQuestion = ShortAnswer()
     for p in dir.iterdir():
         if p.is_file():
             with open(p) as f:
                 if p.suffix == ".py":
                     answer = f.read()
                     newQuestion.setAnswer(answer)
-
                 elif p.suffix == ".md":
                     prompt = f.read()
                     newQuestion.setPrompt(prompt)
-
-
+                
+                #Adds functionality for feedback for sa questions.
+                elif p.suffix == '.txt':
+                    feedback = f.read()
+                    newQuestion.setFeedback(feedback)
                 elif p.suffix == ".toml":
                     cases = []
                     lines = iter(f.readlines())
