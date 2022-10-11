@@ -1,3 +1,4 @@
+from msilib.schema import Patch
 import pathlib
 from os import path
 import base64
@@ -127,7 +128,6 @@ def createCategory(location, startingPart = 1):
     return Category(catName)
 
 def importQuestions(root, globPattern):
-    print(path.join(path.dirname(__file__), 'templates'))
     globLocations = {
         "whitelist": list(root.rglob(globPattern["exportGlob"])),
         "blacklist": list(root.rglob(globPattern["blackListGlob"]))

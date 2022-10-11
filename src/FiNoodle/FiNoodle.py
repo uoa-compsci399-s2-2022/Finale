@@ -1,14 +1,14 @@
 from pathlib import Path
-from moodle_compile.setup import importQuestions
+from .moodle_compile.compile import importQuestions
 from datetime import datetime
 
-def main(root = Path("questions"), globPattern = {
+def build(root = Path("questions"), globPattern = {
         "exportGlob": "",
         "blackListGlob": "None",
         "IterateChildren": False
     }):
     print("============")
-    print("Finale 1.0.0")
+    print("Finale 0.1.8")
     print("============")
     print()
 
