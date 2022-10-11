@@ -157,7 +157,7 @@ def importQuestions(root, globPattern):
             continue
         break
 
-
+    print("pathToTemplates =", path.join(path.dirname(__file__), 'templates'))
     file_loader = FileSystemLoader(path.join(path.dirname(__file__), 'templates'))
 
     env = Environment(loader=file_loader)
