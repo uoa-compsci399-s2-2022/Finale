@@ -127,6 +127,7 @@ def createCategory(location, startingPart = 1):
     return Category(catName)
 
 def importQuestions(root, globPattern):
+    print(path.join(path.dirname(__file__), 'templates'))
     globLocations = {
         "whitelist": list(root.rglob(globPattern["exportGlob"])),
         "blacklist": list(root.rglob(globPattern["blackListGlob"]))
@@ -157,7 +158,6 @@ def importQuestions(root, globPattern):
         break
 
 
-    print(path.join(path.dirname(__file__), 'templates'))
     file_loader = FileSystemLoader(path.join(path.dirname(__file__), 'templates'))
 
     env = Environment(loader=file_loader)
