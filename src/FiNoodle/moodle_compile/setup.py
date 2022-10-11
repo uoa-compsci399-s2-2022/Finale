@@ -1,4 +1,5 @@
 import pathlib
+from os import path
 import base64
 import re
 from .parser.Question import CodeRunner
@@ -31,11 +32,14 @@ def getQuestion(dir):
         if not p.is_file():
             for sf in p.iterdir():
                 if sf.is_file():
-                    with open(sf) as f:
+                    with open(sf, "rb") as f:
                         content = f.read()
                         newFile = File(sf.name, '/')
-                        newFile.setContent(base64.b64encode(bytes(content, "utf-8")))
-                        newQuestion.addFile(newFile)
+                        newFile.setContent(base64.b64encode(content))
+                        if sf.suffix in ".png,.jpg,.jpeg":
+                            newQuestion.addImage(newFile)
+                        else:
+                            newQuestion.addFile(newFile)
             continue
 
         with open(p) as f:
@@ -56,8 +60,6 @@ def getQuestion(dir):
 
             elif p.suffix == ".toml":
                 fileRead = f.readlines()
-                has_hidden_case = False
-
                 #Validation
                 validate(fileRead)
                 print("[{}]   Input format: .toml".format(datetime.now().strftime("%H:%M:%S")))
@@ -72,9 +74,6 @@ def getQuestion(dir):
                     elif "[[answers]]" in line:
                         cases.append(Answer())
                     else:
-                        if "example = false" in line:
-                            has_hidden_case = True
-
                         splitLine = line.split("=")
                         #take what's before an equal sign and that's our variable name we are manipulating
                         attributeName = splitLine[0].strip()
@@ -92,12 +91,13 @@ def getQuestion(dir):
                                         attributeValue += nextLine.split("'''")[0]
                                         break
                                     attributeValue += nextLine
-                        cases[-1].__setattr__(attributeName, attributeValue)
-                newQuestion.setCases(cases)
-
-                # detect questions without hidden cases
-                if dir.suffix == ".cr" and not has_hidden_case:
-                    print("[{}]   Warning: No hidden cases found".format(datetime.now().strftime("%H:%M:%S")))
+                        if len(cases) > 0:
+                            cases[-1].__setattr__(attributeName, attributeValue)
+                        else:
+                            if attributeName == "tags":
+                                attributeValue = attributeValue.split(",")
+                            newQuestion.__setattr__(attributeName, attributeValue)
+                newQuestion.setCases(cases)          
     return newQuestion
 
 
@@ -127,49 +127,43 @@ def createCategory(location, startingPart = 1):
     return Category(catName)
 
 def importQuestions(root, globPattern):
-    file_loader = FileSystemLoader('moodle_compile/templates')
-
-    
     globLocations = {
         "whitelist": list(root.rglob(globPattern["exportGlob"])),
         "blacklist": list(root.rglob(globPattern["blackListGlob"]))
     } 
     if globPattern["blackListGlob"] == "":
         globLocations["blacklist"] = []
-
     if len(globLocations["whitelist"]) == 0:
         return ""
-    
     globLocations["whitelist"] = [x for x in globLocations["whitelist"] if (x.is_dir() and str(x.parent.suffix) == "")]
     numQuestions = len([x for x in globLocations["whitelist"] if x.suffix != ""])
 
     smallestParent = min([len(x.parts) for x in globLocations["whitelist"]])-1
 
     categories = []
-
     #if all in the glob are questions then
     if numQuestions == len(globLocations["whitelist"]):
         categories.append(createCategory(globLocations["whitelist"][0].parent, smallestParent-1))
 
 
-    for path in globLocations["whitelist"]:
+    for pa in globLocations["whitelist"]:
         #if path contains anything from any of the blacklist strings
         for location in globLocations["blacklist"]:
-            if str(location) in str(path):
+            if str(location) in str(pa):
                 break
         else:
-            categories = (IterateChildren(path, categories, globLocations, globPattern))  
+            categories = (IterateChildren(pa, categories, globLocations, globPattern))  
             continue
         break
 
 
-    
-    print(categories)
+    print(path.join(path.dirname(__file__), 'templates'))
+    file_loader = FileSystemLoader(path.join(path.dirname(__file__), 'templates'))
+
     env = Environment(loader=file_loader)
 
     #get our questions/answers
     #categories = getCategories(root)
-
     quizTemplate = env.get_template('quiz.xml')
 
     for cat in categories:

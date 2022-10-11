@@ -31,6 +31,9 @@ class Question:
     def addFile(self, file):
         self.files.append(file)
 
+    def addImage(self, file):
+        self.images.append(file)
+
 class MultipleChoice(Question):
     _XML_NAME = "multiplechoice.xml"
     def __init__(self):
