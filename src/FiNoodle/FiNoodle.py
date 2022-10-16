@@ -24,4 +24,4 @@ def build(root = Path("questions"), globPattern = {
         f.write(xml)
 
 if __name__ == '__main__':
-    main()
+    build()

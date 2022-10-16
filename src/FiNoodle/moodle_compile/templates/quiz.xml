@@ -14,7 +14,7 @@
 
         {% for question in category.questions %}
             <!-- question: {{loop.index}}  -->
-            {{ question }}
+{{ question }}
         {% endfor %}
     {% endfor %}
 </quiz>
