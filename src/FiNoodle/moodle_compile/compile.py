@@ -8,6 +8,7 @@ from .parser.Question import MultipleChoice
 from .parser.TestCase import TestCase
 from .parser.Answer import Answer
 from .parser.Question import ShortAnswer
+from .parser.Question import Description
 from .parser.File import File
 from .parser.Category import Category
 from jinja2 import Environment, FileSystemLoader
@@ -20,7 +21,6 @@ def validate(fileLines):
 
 def getQuestion(dir):
     print("[{}] Loading questions from {}".format(datetime.now().strftime("%H:%M:%S"), dir))
-
     if dir.suffix == ".cr":
         print("[{}]   Question format: CodeRunner".format(datetime.now().strftime("%H:%M:%S")))
         newQuestion = CodeRunner()
@@ -29,6 +29,8 @@ def getQuestion(dir):
         newQuestion = MultipleChoice()
     elif dir.suffix == ".sa":
         newQuestion = ShortAnswer()
+    elif dir.suffix == ".de":
+        newQuestion = Description()
     for p in dir.iterdir():
         if not p.is_file():
             for sf in p.iterdir():

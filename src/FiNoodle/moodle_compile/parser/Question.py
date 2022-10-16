@@ -45,6 +45,14 @@ class MultipleChoice(Question):
     def setCases(self, answers):
         self.answers = answers
 
+class Description(Question):
+    _XML_NAME = "description.xml"
+    def __init__(self):
+        super(Description, self).__init__()
+
+    def setFeedback(self, feedback):
+        self.feedback = feedback
+
 class ShortAnswer(Question):
     _XML_NAME = "shortanswer.xml"
     def __init__(self):
