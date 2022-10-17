@@ -1,8 +1,13 @@
-from msilib.schema import Patch
+#from msilib.schema import Patch
 import pathlib
 from os import path
+import os
 import base64
 import re
+import toml
+import tomli
+import json
+from jsonschema import validate as valid
 from .parser.Question import CodeRunner
 from .parser.Question import MultipleChoice
 from .parser.TestCase import TestCase
@@ -14,8 +19,14 @@ from .parser.Category import Category
 from jinja2 import Environment, FileSystemLoader
 from datetime import datetime
 
-def validate(fileLines):
-    print(dir)
+def validate(file, dir):
+    with open('src/FiNoodle/moodle_compile/schema.json') as f:
+        schema = json.loads(f.read())
+        tomlFile = tomli.loads(file)
+        tomlFile = json.dumps(tomlFile)
+        tomlFile = json.loads(tomlFile)
+        valid(instance=tomlFile, schema=schema)
+        
 
 
 def getQuestion(dir):
@@ -61,9 +72,9 @@ def getQuestion(dir):
                 newQuestion.setFeedback(feedback)
 
             elif p.suffix == ".toml":
+                validate(f.read(), dir)
+                f.seek(0)
                 fileRead = f.readlines()
-                #Validation
-                validate(fileRead)
                 print("[{}]   Input format: .toml".format(datetime.now().strftime("%H:%M:%S")))
 
                 cases = []

@@ -1,0 +1,29 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Validation for TOML Documents",
+    "description": "This document is used for validation of TOML documents for questions.",
+    "type": "object",
+    "properties": {
+        "[testcases]": {
+            "type": "object",
+            "example": {
+                "description": "example",
+                "type": "boolean"
+            },
+            "display": {
+                "description": "display this example?",
+                "enum": ["SHOW", "HIDE", "HIDE_IF_FAIL", "HIDE_IF_SUCCEED", "show", "hide", "hide_if_fail", "hide_if_succeed"]
+            },
+            "testcode": {
+                "type": "string"
+            },
+            "stdin": {
+                "type": "string"
+            },
+            "expected": {
+                "type": "string"
+            },
+            "required": ["example", "display", "testcode", "stdin", "expected"]
+        }
+    }
+}
