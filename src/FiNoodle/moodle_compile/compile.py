@@ -14,8 +14,7 @@ from jinja2 import Environment, FileSystemLoader
 from datetime import datetime
 
 def validate(fileLines):
-    pass
-    #print("Content:", fileLines)
+    print(dir)
 
 
 def getQuestion(dir):
