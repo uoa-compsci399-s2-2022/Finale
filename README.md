@@ -18,26 +18,69 @@
 ## About The Project
 The process to write CodeRunner questions with Moodle is difficult and the number of options makes question creation long and tedious. This means that teaching staff spend large amounts of time working simply writing out the questions, and the process leads to a high incidence of question errors.
 
-Based on <a href="https://github.com/James-Ansley/moodle-toml">Moodle TOML</a> by James-Ansley, Finale supports various question types (including CodeRunner, short answer, multiple choice, etc.) and provide warnings for common errors in generating questions. Also, Finale supports question templates to generate questions in a consistent and precise format.
+Based on <a href="https://github.com/James-Ansley/moodle-toml">Toodle</a> by <a href="https://github.com/James-Ansley">@James-Ansley</a>, Finale supports various question types (including CodeRunner, short answer, multiple choice, etc.) and provide warnings for common errors in generating questions. Also, Finale supports question templates to generate questions in a consistent and precise format.
 
 <br>
 
+<!-- BUILT WITH -->
 ### Built With
 
 * Python
 * Moodle
 * XML
+* Jinja
+
+<br>
+<hr>
+<br>
+
+<!-- INSTALLATION -->
+## Installation
+```
+pip install FiNoodle
+```
+FiNoodle supports installing using pip. Enter the command above in the project folder to install FiNoodle.
+
+<br>
+<hr>
+<br>
+
+<!-- USAGE -->
+## Usage
+Place files for questions in `../Finale/questions/` and run `../Finale/src/FiNoodle.py`. An output file called `out.xml` will be generated in the project folder which can be loaded to Moodle directly.
 
 <br>
 
-<!-- USAGE EXAMPLES -->
-## Usage
+### Supported File Types
+* `.py`: Python programs
+* `.md`: Prompt messages
+* `.toml`: Test cases
+* `Folders`: Supporting files (including images)
+
+<br>
+
+### Supported Question Types
+* `.cr`: CodeRunner
+* `.mc`: Multiple choice
+* `.sa`: Short answer
+* `.de`: Description
+
+<br>
+<hr>
+<br>
 
 
 
+<!-- REQUIREMENTS -->
+## Requirements
+* Markdown~=3.3.7
+* Jinja2~=3.1.2
+
+<br>
+<hr>
 <br>
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-* Moodle TOML (@James-Ansley): https://github.com/James-Ansley/moodle-toml
-* Best-README-Template (@othneildrew): https://github.com/othneildrew/Best-README-Template
+* Toodle (<a href="https://github.com/James-Ansley">@James-Ansley</a>): https://github.com/James-Ansley/moodle-toml
+* Best-README-Template : https://github.com/othneildrew/Best-README-Template
