@@ -18,17 +18,17 @@
 ## About The Project
 The process to write CodeRunner questions with Moodle is difficult and the number of options makes question creation long and tedious. This means that teaching staff spend large amounts of time working simply writing out the questions, and the process leads to a high incidence of question errors.
 
-Based on <a href="https://github.com/James-Ansley/moodle-toml">Toodle</a> by <a href="https://github.com/James-Ansley">@James-Ansley</a>, Finale supports various question types (including CodeRunner, short answer, multiple choice, etc.) and provide warnings for common errors in generating questions. Also, Finale supports question templates to generate questions in a consistent and precise format.
+Based on <a href="https://github.com/James-Ansley/moodle-toml">Toodle</a> by <a href="https://github.com/James-Ansley">@James-Ansley</a>, `FiNoodle` by Finale supports various question types (including CodeRunner, short answer, multiple choice, etc.) and provide warnings for common errors in generating questions. FiNoodle also various supports question templates to generate questions in a consistent and precise format.
 
 <br>
 
 <!-- BUILT WITH -->
 ### Built With
 
-* Python
+* Python (3.10)
 * Moodle
 * XML
-* Jinja
+* Jinja (3.1.2)
 
 <br>
 <hr>
@@ -69,12 +69,37 @@ Place files for questions in `../Finale/questions/` and run `../Finale/src/FiNoo
 <hr>
 <br>
 
-
-
 <!-- REQUIREMENTS -->
 ## Requirements
 * Markdown~=3.3.7
 * Jinja2~=3.1.2
+
+<br>
+<hr>
+<br>
+
+<!-- FUTURE PLAN -->
+## Future Plan
+* Question repository: Managing and loading questions from external sources.
+* More question types: Filling the blanks.
+* More error checking: Duplicated questions.
+
+<br>
+<hr>
+<br>
+
+<!-- THE TEAM -->
+## The Team
+* Carl Taka
+* Mongkulviseth Rithy
+* Sam Shoykhet
+* Sambav Ravivenkatesh
+* Shejie Shuang
+* Yunu Choi
+
+<br>
+
+* Trello board: https://trello.com/b/4HmtI49x/399-project-kanban
 
 <br>
 <hr>
