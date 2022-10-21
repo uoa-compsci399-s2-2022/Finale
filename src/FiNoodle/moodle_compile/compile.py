@@ -3,7 +3,7 @@ import pathlib
 from os import path
 import os
 import base64
-import re
+import sys
 import toml
 import tomli
 import json
@@ -19,8 +19,12 @@ from .parser.Category import Category
 from jinja2 import Environment, FileSystemLoader
 from datetime import datetime
 
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
+
 def validate(file, dir):
-    with open('src/FiNoodle/moodle_compile/schema.json') as f:
+
+    with open(os.path.join(__location__, "schema.json")) as f:
         schema = json.loads(f.read())
         tomlFile = tomli.loads(file)
         tomlFile = json.dumps(tomlFile)
@@ -30,7 +34,7 @@ def validate(file, dir):
 
 
 def getQuestion(dir):
-    print("[{}] Loading questions from {}".format(datetime.now().strftime("%H:%M:%S"), dir))
+    print("[{}] Loading question from {}".format(datetime.now().strftime("%H:%M:%S"), dir))
     if dir.suffix == ".cr":
         print("[{}]   Question format: CodeRunner".format(datetime.now().strftime("%H:%M:%S")))
         newQuestion = CodeRunner()
@@ -41,6 +45,8 @@ def getQuestion(dir):
         newQuestion = ShortAnswer()
     elif dir.suffix == ".de":
         newQuestion = Description()
+    else:
+        print(dir.suffix)
     for p in dir.iterdir():
         if not p.is_file():
             for sf in p.iterdir():
@@ -54,7 +60,6 @@ def getQuestion(dir):
                         else:
                             newQuestion.addFile(newFile)
             continue
-
         with open(p) as f:
             if p.suffix == ".py":
                 print("[{}]   Input format: .py".format(datetime.now().strftime("%H:%M:%S")))
@@ -169,7 +174,6 @@ def importQuestions(root, globPattern):
             continue
         break
 
-    print("pathToTemplates =", path.join(path.dirname(__file__), 'templates'))
     file_loader = FileSystemLoader(path.join(path.dirname(__file__), 'templates'))
 
     env = Environment(loader=file_loader)
