@@ -1,1 +1,0 @@
-Mirror, Mirror through the code, who's the best lecturer of them all?
